@@ -1,8 +1,8 @@
 pollutantmean <- function(directory,pollutant,id = 1:332){
-  pols <- NULL
-  pols<- pols + for(i in id){
-    wkfile <- paste(getwd(),"/",directory,"/",sprintf("%03i",i),".csv",sep = "")
-     read.csv(wkfile)
+  pols <- data.frame()
+  for(i in id){
+    wkfile <- paste("./",directory,"/",sprintf("%03i",i),".csv",sep = "")
+    pols<- rbind(pols,read.csv(wkfile))
   }
-  pols
+  mean(pols[[pollutant]],na.rm = TRUE)
 }
